@@ -1,5 +1,6 @@
 export type Payment = {
   id: string;
+  userId?: string;
   merchantId: string;
   amount: number;
   currency: string;
@@ -7,24 +8,34 @@ export type Payment = {
   countryCode?: string; // e.g., 'TH', 'IN', 'ID'
   placeName?: string; // e.g., 'Bangkok - Coffee House'
   createdAt: string;
+  status?: string;
+  txRef?: string;
+  extra?: any;
+  fxSnapshot?: any;
+  pointsRedeemed?: number;
 };
 
 const KEY_PAYMENTS = 'pay_history_with_locations';
 
-export function addPayment(p: Omit<Payment, 'id' | 'createdAt'> & { createdAt?: string }): Payment {
-  const full: Payment = {
-    id: crypto.randomUUID(),
-    createdAt: p.createdAt || new Date().toISOString(),
-    ...p,
-  };
-  const cur = getPayments();
-  cur.unshift(full);
+export async function addPayment(p: Omit<Payment, 'id' | 'createdAt'> & { createdAt?: string; qrDetails?: any }): Promise<Payment> {
+  const payload = { createdAt: p.createdAt || new Date().toISOString(), ...p } as Omit<Payment, 'id'> & { qrDetails?: any };
+  let server: Payment | null = null;
   if (typeof window !== 'undefined') {
-    localStorage.setItem(KEY_PAYMENTS, JSON.stringify(cur));
-    // Notify App A to update visited/badges (hackathon bridge)
-    try { window.postMessage({ type: 'jetset:new-payment', payment: full }, '*'); } catch {}
+    try {
+      const r = await fetch('/api/payments', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) });
+      const j = await r.json();
+      if (j?.ok && j?.data?.id) {
+        server = j.data as Payment;
+      }
+    } catch {}
   }
-  return full;
+  const final: Payment = server || ({ id: crypto.randomUUID(), ...payload } as Payment);
+  if (typeof window !== 'undefined') {
+    const cur = getPayments();
+    cur.unshift(final);
+    localStorage.setItem(KEY_PAYMENTS, JSON.stringify(cur));
+  }
+  return final;
 }
 
 export function getPayments(): Payment[] {

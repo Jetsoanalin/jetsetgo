@@ -18,10 +18,14 @@ export const metadata = {
   manifest: "/manifest.json",
 };
 
+import AuthGate from "@/components/AuthGate";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <AuthGate>{children}</AuthGate>
+      </body>
     </html>
   );
 }

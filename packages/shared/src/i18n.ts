@@ -30,6 +30,7 @@ export type I18nKey =
   | 'add_points'
   | 'tier'
   | 'conversion_chip'
+  | 'points_disclaimer'
   | 'visited_countries'
   | 'badges'
   | 'where_use_title'
@@ -71,7 +72,8 @@ const en: Dict = {
   points_balance: 'JetSet Points Balance',
   add_points: 'Add points',
   tier: 'Tier',
-  conversion_chip: '1,000 JP = 1 {currency}',
+  conversion_chip: 'Redemption rate today: 1,000 JP ≈ 1 {currency} (subject to change)',
+  points_disclaimer: 'JetSet Points are rewards, not cash. Redemption rates vary.',
   visited_countries: 'Visited countries',
   badges: 'Badges',
   where_use_title: 'Where will you use JetSet?',
@@ -112,15 +114,8 @@ const hi: Dict = {
   points_balance: 'जेटसेट पॉइंट्स बैलेंस',
   add_points: 'पॉइंट्स जोड़ें',
   tier: 'स्तर',
-  conversion_chip: '1,000 JP = 1 {currency}',
-  visited_countries: 'देखे गए देश',
-  badges: 'बैज',
-  where_use_title: 'आप JetSet कहाँ उपयोग करेंगे?',
-  where_use_subtitle: 'देश चुनें जिसमें आप ऐप प्रदर्शित करना चाहते हैं। आप इसे कभी भी बदल सकते हैं।',
-  choose_language_title: 'अपनी भाषा चुनें',
-  choose_language_subtitle: 'JetSet के लिए भाषा चुनें।',
-  continue_btn: 'जारी रखें',
-  save_btn: 'सहेजें',
+  conversion_chip: 'आज का रिडेम्पशन रेट: 1,000 JP ≈ 1 {currency} (बदल सकता है)',
+  points_disclaimer: 'JetSet Points रिवार्ड्स हैं, नकद नहीं। रिडेम्पशन दरें बदलती रहती हैं।',
 };
 
 const id: Dict = {
@@ -153,15 +148,8 @@ const id: Dict = {
   points_balance: 'Saldo JetSet Points',
   add_points: 'Tambah poin',
   tier: 'Tingkat',
-  conversion_chip: '1,000 JP = 1 {currency}',
-  visited_countries: 'Negara yang dikunjungi',
-  badges: 'Lencana',
-  where_use_title: 'Di mana Anda akan menggunakan JetSet?',
-  where_use_subtitle: 'Pilih negara tampilan aplikasi. Anda bisa mengubahnya kapan saja.',
-  choose_language_title: 'Pilih bahasa Anda',
-  choose_language_subtitle: 'Pilih bahasa untuk JetSet.',
-  continue_btn: 'Lanjut',
-  save_btn: 'Simpan',
+  conversion_chip: 'Nilai penukaran hari ini: 1.000 JP ≈ 1 {currency} (dapat berubah)',
+  points_disclaimer: 'JetSet Points adalah hadiah, bukan uang. Nilai penukaran dapat berubah.',
 };
 
 const th: Dict = {
@@ -194,15 +182,8 @@ const th: Dict = {
   points_balance: 'ยอด JetSet Points',
   add_points: 'เพิ่มพอยท์',
   tier: 'เลเวล',
-  conversion_chip: '1,000 JP = 1 {currency}',
-  visited_countries: 'ประเทศที่เคยไป',
-  badges: 'แบดจ์',
-  where_use_title: 'คุณจะใช้ JetSet ที่ไหน?',
-  where_use_subtitle: 'เลือกประเทศที่ต้องการให้แอปแสดงผล สามารถเปลี่ยนได้ทุกเวลา',
-  choose_language_title: 'เลือกภาษาของคุณ',
-  choose_language_subtitle: 'เลือกภาษาสำหรับ JetSet',
-  continue_btn: 'ดำเนินการต่อ',
-  save_btn: 'บันทึก',
+  conversion_chip: 'อัตราแลกคะแนนวันนี้: 1,000 JP ≈ 1 {currency} (อาจเปลี่ยนแปลง)',
+  points_disclaimer: 'JetSet Points คือรางวัล ไม่ใช่เงินสด ค่าแลกคะแนนอาจเปลี่ยนแปลงได้.',
 };
 
 const dicts: Record<string, Dict> = { en, hi, id, th };

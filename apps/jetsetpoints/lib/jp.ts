@@ -16,8 +16,8 @@ export function getBalanceJP(): number {
   if (typeof window === 'undefined') return 0;
   const raw = localStorage.getItem(KEY_BALANCE);
   if (!raw) {
-    localStorage.setItem(KEY_BALANCE, '12345');
-    return 12345;
+    localStorage.setItem(KEY_BALANCE, '0');
+    return 0;
   }
   return Number(raw) || 0;
 }
@@ -48,19 +48,25 @@ export function getLedger(): JPLedgerItem[] {
   try { return JSON.parse(raw); } catch { return []; }
 }
 
-export function spendJP(amountJP: number, description: string): { ok: boolean; newBalance: number } {
+export async function spendJP(amountJP: number, description: string): Promise<{ ok: boolean; newBalance: number }> {
   const bal = getBalanceJP();
   if (bal < amountJP) return { ok: false, newBalance: bal };
   const next = bal - amountJP;
   setBalanceJP(next);
   addLedger({ type: 'debit', amountJP, description });
+  try {
+    await fetch('/api/points', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ userId: 'local', balance: next, deltaJP: -amountJP, description }) });
+  } catch {}
   return { ok: true, newBalance: next };
 }
 
-export function creditJP(amountJP: number, description: string) {
+export async function creditJP(amountJP: number, description: string) {
   const next = getBalanceJP() + amountJP;
   setBalanceJP(next);
   addLedger({ type: 'credit', amountJP, description });
+  try {
+    await fetch('/api/points', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ userId: 'local', balance: next, deltaJP: amountJP, description }) });
+  } catch {}
 }
 
 export function getNftPassport(): { minted: boolean; txHash?: string } {
