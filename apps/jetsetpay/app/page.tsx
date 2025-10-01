@@ -46,6 +46,7 @@ export default function Home() {
   const [walletUsd, setWalletUsd] = useState<number>(0);
   const [perUnitJP, setPerUnitJP] = useState<number>(1250);
   const [recent, setRecent] = useState<Payment[]>([]);
+  const [displayName, setDisplayName] = useState<string>('User');
   const supabase = getSupabaseClient();
 
   useEffect(() => {
@@ -64,6 +65,7 @@ export default function Home() {
     async function loadData() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
+      setDisplayName(user.email || 'User');
       try {
         const r = await fetch(`/api/points?userId=${user.id}`);
         const j = await r.json();
@@ -118,8 +120,11 @@ export default function Home() {
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <div className="px-5 pt-6 pb-4 bg-gradient-to-b from-neutral-900 to-neutral-950">
         <div className="flex items-center justify-between">
-          <button className="text-2xl">≡</button>
-          <button className="rounded-full bg-neutral-800 px-4 py-2 text-sm">{t('earn_bonus', lang)}</button>
+          <div className="flex items-center gap-2">
+            <span className="text-2xl"></span>
+            <span className="font-semibold">JetSet Pay</span>
+          </div>
+          <button className="rounded-full bg-neutral-800 px-4 py-2 text-sm">Earn 50$ Bonus</button>
         </div>
 
         <Link href="/region" className="mt-4 block rounded-2xl bg-neutral-900 border border-neutral-800 px-4 py-3">
@@ -135,7 +140,7 @@ export default function Home() {
         <div className="mt-6 text-center">
           {walletAllowed && payMode==='wallet' ? (
             <>
-              <div className="text-neutral-400 text-sm">{t('wallet_title', lang, { name: 'Analin Jetso' })}</div>
+              <div className="text-neutral-400 text-sm">{t('wallet_title', lang, { name: displayName })}</div>
               <div className="text-[84px] leading-none font-semibold mt-3">{walletUsd.toFixed(2)}</div>
               <button onClick={() => setShowModal(true)} className="inline-flex items-center gap-2 rounded-full bg-neutral-900/70 border border-neutral-800 px-4 py-2 mt-4">
                 <span>{country.flag}</span>

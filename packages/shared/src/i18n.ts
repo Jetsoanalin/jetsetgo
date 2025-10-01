@@ -44,7 +44,7 @@ export type I18nKey =
 type Dict = Record<I18nKey, string>;
 
 const en: Dict = {
-  earn_bonus: 'Earn 30 USD',
+  earn_bonus: 'Earn 50 USD',
   personalized_for_country: 'Your experience is personalized for {country}.',
   wallet_title: "{name}'s wallet • USD",
   add_money: 'Add money',
@@ -86,7 +86,7 @@ const en: Dict = {
 
 const hi: Dict = {
   ...en,
-  earn_bonus: '30 USD कमाएँ',
+  earn_bonus: '50 USD कमाएँ',
   personalized_for_country: '{country} के लिए आपका अनुभव व्यक्तिगत है।',
   wallet_title: "{name} का वॉलेट • USD",
   add_money: 'पैसे जोड़ें',
@@ -120,7 +120,7 @@ const hi: Dict = {
 
 const id: Dict = {
   ...en,
-  earn_bonus: 'Dapatkan 30 USD',
+  earn_bonus: 'Dapatkan 50 USD',
   personalized_for_country: 'Pengalaman Anda dipersonalisasi untuk {country}.',
   wallet_title: 'Dompet {name} • USD',
   add_money: 'Tambah saldo',
@@ -154,7 +154,7 @@ const id: Dict = {
 
 const th: Dict = {
   ...en,
-  earn_bonus: 'รับ 30 USD',
+  earn_bonus: 'รับ 50 USD',
   personalized_for_country: 'ประสบการณ์ของคุณกำหนดเองสำหรับ {country}',
   wallet_title: 'กระเป๋าสตางค์ของ {name} • USD',
   add_money: 'เติมเงิน',

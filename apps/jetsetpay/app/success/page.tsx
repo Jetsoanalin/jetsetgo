@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { getSupabaseClient } from "@jetset/shared/dist/supabaseClient";
+import { mockTxHash } from "@jetset/shared/dist/mockTx";
 
 export default function SuccessPage() {
   const params = useSearchParams();
@@ -65,6 +66,8 @@ export default function SuccessPage() {
     loadQr();
   }, [tx?.id]);
 
+  const txHash = useMemo(() => tx ? mockTxHash({ id: tx.id, userId: tx.userId, createdAt: tx.createdAt, amount: tx.amount, currency: tx.currency, method: tx.method, merchantId: tx.merchantId }) : null, [tx]);
+
   if (error && !tx) return <div className="min-h-screen p-6 text-white">{error}</div>;
   if (!tx) return <div className="min-h-screen p-6 text-white">Loading…</div>;
 
@@ -82,6 +85,9 @@ export default function SuccessPage() {
             </div>
             <div className="text-neutral-400 mt-1">{new Date(tx.createdAt).toLocaleString()}</div>
             <div className="text-5xl font-bold mt-4">{tx.amount} {tx.currency}</div>
+            {txHash && (
+              <div className="mt-2 text-xs text-neutral-500 font-mono">Tx Hash: <span className="break-all">{txHash}</span></div>
+            )}
           </div>
 
           <div className="mt-6 grid grid-cols-2 gap-4 text-sm">

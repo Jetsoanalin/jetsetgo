@@ -167,8 +167,11 @@ export default function Home() {
                   <div className="text-neutral-300">{tx.description || 'Points update'}</div>
                   <div className="text-xs text-neutral-500">{new Date(tx.createdAt).toLocaleString()}</div>
                 </div>
-                <div className={tx.deltaJP >= 0 ? 'text-emerald-400' : 'text-red-400'}>
-                  {tx.deltaJP >= 0 ? '+' : ''}{tx.deltaJP} JP
+                <div className="text-right">
+                  <div className={tx.deltaJP >= 0 ? 'text-emerald-400' : 'text-red-400'}>
+                    {tx.deltaJP >= 0 ? '+' : ''}{tx.deltaJP} JP
+                  </div>
+                  <div className="text-xs"><Link href={`/receipt?id=${tx.id}`} className="underline">Receipt</Link></div>
                 </div>
               </li>
             ))}

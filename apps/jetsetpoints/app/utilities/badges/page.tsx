@@ -14,9 +14,12 @@ export default function BadgesPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white p-6">
-      <h1 className="text-2xl font-bold mb-4">Proof-of-Travel</h1>
-      <div className="rounded-2xl bg-neutral-950 border border-neutral-800 p-4">
+    <div className="min-h-screen bg-[#0a0a0a] text-white px-5 py-6">
+      <div className="relative h-40 w-full overflow-hidden rounded-2xl border border-neutral-800">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Travel" className="h-40 w-full object-cover" />
+      </div>
+
+      <div className="mt-4 rounded-2xl bg-neutral-950 border border-neutral-800 p-4">
         <div className="text-neutral-400 text-sm">Visited countries</div>
         <div className="mt-2 grid grid-cols-3 gap-3 text-center">
           {visited.length === 0 && <div className="col-span-3 text-neutral-500">No visits yet</div>}

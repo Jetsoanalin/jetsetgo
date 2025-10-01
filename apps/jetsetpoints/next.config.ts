@@ -1,11 +1,7 @@
-import type { NextConfig } from "next";
-import withPWA from "next-pwa";
+import type { NextConfig } from 'next'
 
-const config: NextConfig = {
-  /* other options */
-};
+const nextConfig: NextConfig = {
+  transpilePackages: ['@ton/ton', '@ton/core', '@ton/crypto']
+}
 
-export default withPWA({
-  dest: "public",
-  disable: process.env.NODE_ENV === "development",
-})(config as any);
+export default nextConfig

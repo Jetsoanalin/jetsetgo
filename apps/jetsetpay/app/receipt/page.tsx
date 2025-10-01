@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { mockTxHash } from "@jetset/shared/dist/mockTx";
 
 export default function ReceiptPage() {
   const params = useSearchParams();
@@ -38,6 +39,8 @@ export default function ReceiptPage() {
   if (error) return <div className="min-h-screen p-6 max-w-2xl mx-auto text-white bg-[#0a0a0a]">{error}</div>;
   if (!tx) return <div className="min-h-screen p-6 max-w-2xl mx-auto text-white bg-[#0a0a0a]">Loading…</div>;
 
+  const hash = mockTxHash({ id: tx.id, userId: tx.userId, createdAt: tx.createdAt, amount: tx.amount, currency: tx.currency, method: tx.method, merchantId: tx.merchantId });
+
   return (
     <div className="min-h-screen p-6 max-w-2xl mx-auto text-white bg-[#0a0a0a]">
       <div className="rounded-3xl border border-neutral-800 p-6 bg-neutral-950">
@@ -53,6 +56,7 @@ export default function ReceiptPage() {
           {tx.method === 'points' && (
             <div className="text-neutral-300 mt-2 text-sm">Points redeemed: {Number(tx.pointsredeemed || 0).toLocaleString()} JP</div>
           )}
+          <div className="mt-2 text-xs text-neutral-500 font-mono">Tx Hash: <span className="break-all">{hash}</span></div>
         </div>
 
         <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
