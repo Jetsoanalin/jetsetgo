@@ -1,5 +1,42 @@
 # JetSet Travel Rewards Monorepo
 
+
+Here’s a polished **project description** you can use in your hackathon presentation, website, or investor deck. It captures the problem, solution, compliance edge, and value proposition in a concise but strong way.
+
+
+## **Project Description – JetSet Points & JetSet Pay**
+
+**JetSet makes local payments universal.**
+We are building a dual-application ecosystem that allows foreign travelers, crypto nomads, and Web3 professionals to spend globally but pay locally in Southeast Asia and India.
+
+* **App A – JetSet Points**
+
+  * Travelers top up with **crypto (USDT/USDC)** or **credit/debit cards**.
+  * Balances are converted into **JetSet Points**, a loyalty-style currency that avoids regulatory restrictions in countries like India.
+  * App A doubles as a **travel utility hub** with eSIMs, insurance, NFT passports, and gamified badges to enhance adoption.
+
+* **App B – JetSet Pay**
+
+  * Acts as a **local payment layer**, directly integrated with national QR systems: UPI (India), QRIS (Indonesia), VietQR (Vietnam), PromptPay (Thailand), DuitNow (Malaysia), PayNow (Singapore), KHQR (Cambodia), and more.
+  * Users can pay merchants by **redeeming JetSet Points** or using a **wallet balance from card/bank top-ups**.
+  * Keeps compliance intact by working with **regulated PSP partners** in each country, ensuring merchants always get paid locally in their currency.
+
+### **Why It Matters**
+
+Travellers today face **2–6% fees** on foreign card transactions, **$5–10 ATM withdrawal fees**, and poor acceptance of international cards in small shops. Crypto cards are no better—they inherit the same Visa/Mastercard rails and add conversion fees.
+
+By separating **loyalty (App A)** and **payments (App B)**, JetSet offers:
+
+* **Lower cost, higher acceptance**: Pay at local merchants’ QR codes with near-zero user fees.
+* **Regulatory compliance**: Points in India, wallet+points in other SEA countries.
+* **Crypto inclusion**: Web3 travellers can finally spend stablecoins in the real economy.
+* **Travel ecosystem**: Value-added services (insurance, eSIMs, NFT badges) keep users engaged.
+
+### **Vision**
+
+JetSet aims to become the **Universal Travel Rewards Network** — connecting crypto, cards, and loyalty into a seamless payment layer across Southeast Asia, solving one of the biggest daily pain points for global travellers and unlocking a massive untapped market.
+
+
 Two Next.js PWAs in a single repository:
 
 - JetSet Points (App A): loyalty vault, admin allocations, utilities, crypto deposits
