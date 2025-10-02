@@ -1,10 +1,6 @@
 # JetSet Travel Rewards Monorepo
 
-
-Here’s a polished **project description** you can use in your hackathon presentation, website, or investor deck. It captures the problem, solution, compliance edge, and value proposition in a concise but strong way.
-
-
-## **Project Description – JetSet Points & JetSet Pay**
+# **Project Description – JetSet Points & JetSet Pay**
 
 **JetSet makes local payments universal.**
 We are building a dual-application ecosystem that allows foreign travelers, crypto nomads, and Web3 professionals to spend globally but pay locally in Southeast Asia and India.
