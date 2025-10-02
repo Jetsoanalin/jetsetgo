@@ -2,8 +2,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { getSelectedCountry } from "@jetset/shared/dist/prefs";
-import { getCountry } from "@jetset/shared/dist/countries";
-import { convertLocalToJP } from "@jetset/shared/dist/countries";
+import { getCountry, convertLocalToUSD, convertLocalToJP } from "@jetset/shared/dist/countries";
 import { PageHeader, Card } from "@/components/UI";
 import { SlideToPay } from "@/components/SlideToPay";
 import { decodeThaiPromptPay } from "@jetset/shared/dist/thaiPromptpay";
@@ -50,7 +49,17 @@ export default function ReviewPage() {
 
     const tx = await addPayment({ userId: user.id, merchantId: bill?.billerId || credit?.proxyId || 'PROMPTPAY', amount, currency: country.currencyCode, method, countryCode: code, placeName: bill?.merchantName || credit?.merchantName, extra: { scheme: 'promptpay' }, fxSnapshot: null, createdAt: new Date().toISOString(), pointsRedeemed: method === 'points' ? jpNeeded : 0 });
 
-    // Deduct wallet USD is handled elsewhere; keep only points logic here to avoid duplicates
+    // If paying with wallet, deduct USD equivalent from wallet balance
+    if (method === 'wallet') {
+      try {
+        const balRes = await fetch(`/api/wallet?userId=${user.id}`);
+        const balJson = await balRes.json();
+        const curUSD = Number(balJson?.balance || 0);
+        const usdToDebit = convertLocalToUSD(amount, code);
+        const newBalance = Math.max(0, curUSD - usdToDebit);
+        await fetch('/api/wallet', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ userId: user.id, currency: 'USD', newBalance }) });
+      } catch {}
+    }
 
     // Persist QR details
     try {
